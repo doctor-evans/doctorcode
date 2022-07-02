@@ -1,0 +1,159 @@
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <title>Doctor Code | Tutorials on medical topics and programming</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description"
+        content="Blog post on our youtube session of QandA, tutorials on programming language, social media video downloader">
+    <meta name="keywords"
+        content="youtube, blog, medicine, study medicine, question and answer, programming, python, django, flutter, web3, solidity, youtube downloader, video downloader, twitter, instagram video downloader">
+    <meta name="author" content="Doctor, snavetech, evanschan, doctorcode, chancity">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="{% static 'core/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/font-awesome.min.css' %}">
+
+
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <!-- SCRIPTS -->
+    <script src="{% static 'core/js/jquery.js' %}"></script>
+    <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'core/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'core/js/smoothscroll.js' %}"></script>
+    <script src="{% static 'core/js/custom.js' %}"></script>
+
+</head>
+
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+    <!-- PRE LOADER -->
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
+
+
+    <!-- MENU -->
+    {% include 'nav.html' %}
+
+    <!-- HOME -->
+    <section id="home">
+        <div class="row">
+            <div class="owl-carousel owl-theme home-slider">
+                <div class="item item-first">
+                    <div class="caption">
+                        <div class="container">
+                            <div class="col-md-6 col-sm-12">
+                                <h1>Welcome To Doctor Code</h1>
+                                <h3>A platform where we simplify the technicalities of pathologies and explain the
+                                    progression of diseases while touching programming and giving you easy access to
+                                    download your favorite social media videos.</h3>
+                                <a href="{% url 'blog' %}" class="section-btn btn btn-default">Read Blog</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-title text-center">
+                            <h2>Latest Blog posts <small>Following Our YouTube channel</small></h2>
+                        </div>
+                    </div>
+
+                    {% for post in post_list|slice:":3" %}
+                    <div class="col-md-4 col-sm-4">
+                        <div class="courses-thumb courses-thumb-secondary">
+                            <div class="courses-top" style="height: 200px;">
+                                <div class="courses-image">
+                                    {% if post.image %}
+                                    <img class="img-responsive" src="{{ post.image.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'core/images/product-1-720x480.jpg' %}" class="img-responsive"
+                                        alt="">
+                                    {% endif %}
+
+                                </div>
+                                <div class="courses-date">
+                                    <span title="Author"><i class="fa fa-user"></i> {{ post.author }}</span>
+                                </div>
+                            </div>
+
+                            <div class="courses-detail">
+                                <h5><a href="">{{ post.title }}.</a></h5>
+                                <br>
+                                <br>
+                                <span title="Date"><i class="fa fa-calendar"></i> {{ post.created_on }}</span>
+                            </div>
+
+                            <div class="courses-info">
+                                <a href="{% url 'post_detail' post.slug  %}"
+                                    class="section-btn btn btn-primary btn-block">Read
+                                    More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section id="aboutus">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="text-center">
+                            <h2>About us</h2>
+
+                            <br>
+
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+                                molestias ipsa veritatis nihil iusto maiores natus dolor, a reiciendis corporis
+                                obcaecati ex. Totam assumenda impedit aut eum, illum distinctio saepe explicabo.
+                                Consequuntur molestiae similique id quos, quasi quas perferendis laboriosam, fugit natus
+                                odit totam! Id dolores saepe, sint debitis rerum dolorem tempora aliquid, pariatur enim
+                                nisi. Quia ab iusto assumenda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="contact-image">
+                        <img src="{% static 'core/images/contact-1-600x400.jpg' %}" class="img-responsive"
+                            alt="Smiling Two Girls">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    {% include 'footer.html' %}
+
+
+
+</body>
+
+</html>

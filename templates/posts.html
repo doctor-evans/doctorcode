@@ -1,0 +1,139 @@
+{% load static %}
+<html lang="en">
+
+<head>
+
+     <title>Doctor Code | Tutorials on medical topics and programming</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description"
+          content="Blog post on our youtube session of QandA, tutorials on programming language, social media video downloader">
+     <meta name="keywords"
+          content="youtube, blog, medicine, study medicine, question and answer, programming, python, django, flutter, web3, solidity, youtube downloader, video downloader, twitter, instagram video downloader">
+     <meta name="author" content="Doctor, snavetech, evanschan, doctorcode, chancity">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static 'core/css/owl.theme.default.min.css' %}">
+     <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'core/css/font-awesome.min.css' %}">
+
+
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+     <!-- SCRIPTS -->
+     <script src="{% static 'core/js/jquery.js' %}"></script>
+     <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'core/js/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'core/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'core/js/custom.js' %}"></script>
+
+</head>
+
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+
+          </div>
+     </section>
+
+
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="/" class="navbar-brand">DoctorCode</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="/">Home</a></li>
+                         <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
+                         <li><a href="{% url 'downloader' %}">Video Downloader</a></li>
+                         <li><a href="https://www.youtube.com/channel/UCDzhr_JjCUrTZ4SU7j9gxvg" target="_blank">YouTube
+                                   Channel</a></li>
+                         <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+     <section id="blogwelcome">
+          <div class="container">
+               <div class="text-center">
+                    <h1>Blog posts</h1>
+
+                    <br>
+
+                    <p class="lead" style="color: white;">Explanations on our pathology, medicine and surgery question
+                         and answer segment on Youtube.</p>
+               </div>
+          </div>
+     </section>
+
+     <br>
+     <br>
+     <br>
+
+     <section class="section-background">
+          <div class="container">
+               <div class="row">
+                    <div class="col-lg-9 col-xs-12">
+                         <div class="row">
+                              {% for post in post_list %}
+                              <div class="col-sm-6">
+                                   <div class="courses-thumb courses-thumb-secondary">
+                                        <div class="courses-top">
+                                             <div class="courses-image">
+                                                  {% if post.image %}
+                                                  <img class="img-responsive" src="{{ post.image.url }}" alt="">
+                                                  {% else %}
+                                                  <img src="{% static 'core/images/product-1-720x480.jpg' %}"
+                                                       class="img-responsive" alt="">
+                                                  {% endif %}
+                                             </div>
+                                             <div class="courses-date">
+                                                  <span title="Author"><i class="fa fa-user"></i>{{ post.author
+                                                       }}</span>
+                                                  <span title="Date"><i class="fa fa-calendar"></i> {{ post.created_on
+                                                       }}</span>
+                                             </div>
+                                        </div>
+
+                                        <div class="courses-detail">
+                                             <h5><a href="{% url 'post_detail' post.slug  %}">{{ blog.title }}</a></h5>
+                                             <p><a href="{% url 'post_detail' post.slug  %}">{{ blog.subtitle }}</a></p>
+                                        </div>
+
+                                        <div class="courses-info">
+                                             <a href="{% url 'post_detail' post.slug  %}"
+                                                  class="section-btn btn btn-primary btn-block">Read More</a>
+                                        </div>
+                                   </div>
+                              </div>
+                              {% endfor %}
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </section>
+
+     {% include 'footer.html' %}
+
+</body>
+
+</html>
