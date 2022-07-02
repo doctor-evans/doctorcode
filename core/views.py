@@ -11,11 +11,12 @@ from django.contrib import messages
 def indexView(request):
     post_list = Post.objects.filter(status=1).order_by("-created_on")
     links = Links.objects.all().first()
+    about = AboutUs.objects.all().first()
 
     return render(
         request,
         "index.html",
-        {"post_list": post_list, "links": links},
+        {"post_list": post_list, "links": links, "about":about},
     )
 
 
