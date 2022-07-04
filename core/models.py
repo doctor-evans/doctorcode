@@ -2,6 +2,7 @@ from operator import mod
 import profile
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -19,7 +20,7 @@ class Post(models.Model):
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
     updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+    content = RichTextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     image = models.ImageField(upload_to="images", blank=True)

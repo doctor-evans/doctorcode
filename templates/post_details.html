@@ -130,7 +130,10 @@
 
                          <ul class="list">
                               {% for post in all_post %}
-                              <a href="{% url 'post_detail' post.slug  %}">
+                              <ul class="list">
+                                   <li><a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a></li>
+                              </ul>
+                              <!-- <a href="{% url 'post_detail' post.slug  %}">
                                    <div class="postblog">
                                         <div class="postimg">
                                              {% if post.image %}
@@ -148,7 +151,7 @@
                                              </p>
                                         </div>
                                    </div>
-                              </a>
+                              </a> -->
                               {% endfor %}
                          </ul>
                     </div>
