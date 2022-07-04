@@ -109,16 +109,19 @@
                                                   {% endif %}
                                              </div>
                                              <div class="courses-date">
-                                                  <span title="Author"><i class="fa fa-user"></i>{{ post.author
-                                                       }}</span>
-                                                  <span title="Date"><i class="fa fa-calendar"></i> {{ post.created_on
-                                                       }}</span>
+                                                  <span title="Author">
+                                                       <i class="fa fa-user"></i> {{ post.author }}</span>
+                                                  <span title="Date">
+                                                       <i class="fa fa-calendar"></i> {{ post.created_on }}</span>
+
+
                                              </div>
                                         </div>
 
                                         <div class="courses-detail">
-                                             <h5><a href="{% url 'post_detail' post.slug  %}">{{ blog.title }}</a></h5>
-                                             <p><a href="{% url 'post_detail' post.slug  %}">{{ blog.subtitle }}</a></p>
+
+                                             <h5><a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a></h5>
+                                             <p><a href="{% url 'post_detail' post.slug  %}">{{ post.subtitle }}</a></p>
                                         </div>
 
                                         <div class="courses-info">
