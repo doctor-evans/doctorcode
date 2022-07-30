@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     "crispy_forms",
     "ckeditor",
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +134,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 MEDIA_URL = "/media/"
 STATIC_ROOT = BASE_DIR / "static"
 MEDIA_ROOT = BASE_DIR / "images"
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
 django_heroku.settings(locals())
