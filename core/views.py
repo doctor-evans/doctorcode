@@ -1,3 +1,4 @@
+import base64
 from re import template
 import re, os
 from django.shortcuts import render, get_object_or_404
@@ -6,6 +7,8 @@ from .forms import CommentForm
 from pytube import YouTube
 from instalooter.looters import PostLooter
 from django.contrib import messages
+import qrcode
+from io import BytesIO
 
 
 def indexView(request):
@@ -57,6 +60,33 @@ def aboutUsView(request):
     return render(request, "about.html", {"about": about, "links":links})
 
 
+def qrcodeView(request):
+    img = ''
+    if request.method == 'POST':
+        urlink = request.POST.get("site_link")
+        print(urlink)
+        qr = qrcode.QRCode(
+            version = 1,
+            box_size = 10,
+            border = 2
+        )
+
+        # adding a link for the qr code to open
+
+        data = urlink
+        qr.add_data(data)
+        qr.make(fit=True)
+
+        # adding the color
+        img = qr.make_image(fill = 'black', back_color = 'white')
+        # img.save('qrcodelink.png')
+        img_png = BytesIO()
+
+        img.save(img_png, kind='PNG')
+
+    return render(request, "bar&qrcode.html", {'img' : base64.b64encode(img_png.getvalue()).decode('utf-8')})
+
+
 def downloadView(request):
     links = Links.objects.all().first()
     homedir = os.path.expanduser("~")
@@ -103,3 +133,5 @@ def allPost(request):
         "posts.html",
         {"post_list": post_list, "links": links},
     )
+
+

@@ -7,4 +7,5 @@ urlpatterns = [
     path("video-downloader/", views.downloadView, name="downloader"),
     path("about-us/", views.aboutUsView, name="aboutus"),
     path("blog/<slug:slug>/", views.post_detail, name="post_detail"),
+    path("qrcode-generator/", views.qrcodeView, name= "qrcode")
 ]
