@@ -62,9 +62,9 @@ def aboutUsView(request):
 
 def qrcodeView(request):
     img = ''
+    img_png = BytesIO()
     if request.method == 'POST':
         urlink = request.POST.get("site_link")
-        print(urlink)
         qr = qrcode.QRCode(
             version = 1,
             box_size = 10,
@@ -80,7 +80,7 @@ def qrcodeView(request):
         # adding the color
         img = qr.make_image(fill = 'black', back_color = 'white')
         # img.save('qrcodelink.png')
-        img_png = BytesIO()
+        
 
         img.save(img_png, kind='PNG')
 
